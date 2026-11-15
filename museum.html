@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Museum | Abandoned but Not Forgotten</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="space museum-page">
+
+        <header>
+            <div class="logo">◐ SPACE EXPLORER</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="explore.html">Explore</a>
+                <a href="about.html">About</a>
+                <a href="museum.html" class="active">Museum</a>
+                <a href="pioneer-tracker.html">Pioneer Tracker</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </header>
+
+        <main class="museum-main">
+
+            <section class="museum-heading">
+                <p>HUMANITY'S FOOTPRINT IN SPACE</p>
+                <h1>THE SPACE MUSEUM</h1>
+                <p>
+                    Explore historic spacecraft and a car sent into space.
+                    Discover their missions, launch dates, and communication status.
+                </p>
+            </section>
+
+            <section class="artifact-grid" id="artifactGrid">
+
+                <!-- Voyager 1 -->
+                <article class="artifact-card" data-id="voyager1">
+                    <div class="artifact-img-box">
+                        <img
+                            src="image/voyager1.png"
+                            alt="Voyager 1 spacecraft"
+                            loading="lazy"
+                        >
+                    </div>
+
+                    <div class="artifact-info">
+                        <span class="artifact-tag">INTERSTELLAR SPACE</span>
+                        <h2>Voyager 1</h2>
+                        <p class="artifact-snippet">
+                            Launched September 5, 1977
+                        </p>
+                        <button class="explore-link" type="button">
+                            Explore Mission ↗
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Voyager 2 -->
+                <article class="artifact-card" data-id="voyager2">
+                    <div class="artifact-img-box">
+                        <img
+                            src="image/voyager2.png"
+                            alt="Voyager 2 spacecraft"
+                            loading="lazy"
+                        >
+                    </div>
+
+                    <div class="artifact-info">
+                        <span class="artifact-tag">OUTER SOLAR SYSTEM</span>
+                        <h2>Voyager 2</h2>
+                        <p class="artifact-snippet">
+                            Launched August 20, 1977
+                        </p>
+                        <button class="explore-link" type="button">
+                            Explore Mission ↗
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Tesla Roadster -->
+                <article class="artifact-card" data-id="tesla">
+                    <div class="artifact-img-box">
+                        <img
+                            src="image/tesla roadster.png"
+                            alt="Tesla Roadster in space"
+                            loading="lazy"
+                        >
+                    </div>
+
+                    <div class="artifact-info">
+                        <span class="artifact-tag">SOLAR ORBIT</span>
+                        <h2>Tesla Roadster</h2>
+                        <p class="artifact-snippet">
+                            Launched February 6, 2018
+                        </p>
+                        <button class="explore-link" type="button">
+                            Explore Mission ↗
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Pioneer 10 -->
+                <article class="artifact-card" data-id="pioneer10">
+                    <div class="artifact-img-box">
+                        <img
+                            src="image/pioneer10.png"
+                            alt="Pioneer 10 spacecraft"
+                            loading="lazy"
+                        >
+                    </div>
+
+                    <div class="artifact-info">
+                        <span class="artifact-tag">JUPITER EXPLORATION</span>
+                        <h2>Pioneer 10</h2>
+                        <p class="artifact-snippet">
+                            Launched March 2, 1972
+                        </p>
+                        <button class="explore-link" type="button">
+                            Explore Mission ↗
+                        </button>
+                    </div>
+                </article>
+
+            </section>
+        </main>
+
+        <!-- Mission details modal -->
+        <div
+            class="artifact-modal"
+            id="artifactModal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modalTitle"
+        >
+            <div class="modal-content">
+
+                <button
+                    class="close-modal"
+                    id="closeModal"
+                    type="button"
+                    aria-label="Close details"
+                >
+                    &times;
+                </button>
+
+                <div class="modal-body" id="modalBody"></div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script src="museum.js"></script>
+</body>
+</html>

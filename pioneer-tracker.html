@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pioneer 10 Tracker | Space Explorer</title>
+    <meta name="description" content="Explore Pioneer 10's mission timeline and possible journeys into deep space.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="pioneer-tracker.css">
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js"
+        }
+    }
+    </script>
+
+    <script type="module" src="pioneer-tracker.js"></script>
+</head>
+
+<body>
+    <!-- HEADER / NAVIGATION -->
+    <header class="topbar">
+        <a href="index.html" class="logo" aria-label="Space Explorer home">
+            <span>◐ SPACE EXPLORER</span>
+        </a>
+
+        <nav class="main-nav" aria-label="Main navigation">
+           <a href="index.html" class="active">HOME</a>
+                <a href="about.html">ABOUT</a>
+                <a href="explore.html">EXPLORE</a>
+                <a href="museum.html">MUSEUM</a>
+                <a href="pioneer-tracker.html">PIONEER TRACKER</a>
+                <a href="contact.html">CONTACT</a>
+        </nav>
+    </header>
+
+    <main class="page-content">
+        <!-- MISSION TIMELINE -->
+        <section class="timeline-panel" id="timeline">
+            <div class="timeline-heading">
+                <div>
+                    <p class="small-label">MISSION TRACKER / 001</p>
+                    <h1>Pioneer <span class="accent">10</span></h1>
+                    <h2>Journey Through Time</h2>
+                    <p class="section-description">
+                        Follow one of humanity's first spacecraft to explore
+                        the outer Solar System.
+                    </p>
+                </div>
+
+                <div class="year-display" id="yearDisplay">1972</div>
+            </div>
+
+            <div class="mission-tags">
+                <span class="tag">LAUNCHED 1972</span>
+                <span class="tag">JUPITER FLYBY 1973</span>
+                <span class="tag">LAST SIGNAL 2003</span>
+            </div>
+
+            <div class="timeline-controls">
+                <button id="playButton" class="action-button" type="button">
+                    ▶ Play
+                </button>
+
+                <button id="resetButton" class="action-button secondary" type="button">
+                    ↺ Reset
+                </button>
+
+                <div class="timeline-range">
+                    <input
+                        type="range"
+                        id="timelineSlider"
+                        min="1972"
+                        max="2003"
+                        step="0.1"
+                        value="1972"
+                        aria-label="Mission year"
+                    >
+
+                    <div class="timeline-years">
+                        <span>1972 · Launch</span>
+                        <span>1973 · Jupiter</span>
+                        <span>1983 · Beyond Neptune</span>
+                        <span>2003 · Last signal</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mission-event">
+                <div class="status-line">
+                    <span class="status-dot"></span>
+                    <span id="missionStatus">MISSION BEGINS</span>
+                </div>
+
+                <h3 id="eventTitle">Launch</h3>
+                <p id="eventDescription">
+                    Pioneer 10 launches from Earth and begins its journey toward Jupiter.
+                </p>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE 3D MAP -->
+        <section class="scene-section" id="spaceSceneSection">
+            <div class="scene-heading">
+                <div>
+                    <h2>Track the Spacecraft</h2>
+                </div>
+
+                <p class="scene-instruction">
+                    Drag to rotate · Scroll to zoom
+                </p>
+            </div>
+
+            <div class="space-scene" id="spaceScene">
+                <div class="loading-message" id="loadingMessage">
+                    <span class="loading-spinner"></span>
+                    <p>Preparing the Solar System...</p>
+                </div>
+
+                <div class="map-error" id="mapError" hidden>
+                    <h3>Unable to load the 3D scene</h3>
+                    <p>
+                        Check your internet connection and make sure your browser
+                        supports WebGL. Try opening this page through Live Server.
+                    </p>
+                </div>
+
+                <div class="zoom-controls" aria-label="Map zoom controls">
+                    <button id="zoomInButton" type="button" aria-label="Zoom in">+</button>
+                    <button id="zoomOutButton" type="button" aria-label="Zoom out">−</button>
+                    <button id="zoomResetButton" type="button" aria-label="Reset view">⌂</button>
+                </div>
+
+                <div class="follow-indicator">
+                    <span class="status-dot"></span>
+                    <span>SPACECRAFT VIEW</span>
+                </div>
+
+                <div class="scene-legend">
+                    <div><span class="legend-dot spacecraft-dot"></span> Pioneer 10</div>
+                    <div><span class="legend-dot trajectory-dot"></span> Mission trajectory</div>
+                    <div><span class="legend-dot planet-dot"></span> Planets</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- THREE POSSIBLE PATHS -->
+        <section class="possible-paths" id="possiblePaths">
+            <div class="paths-intro">
+                <p class="eyebrow">BEYOND THE LAST SIGNAL</p>
+                <h2>Where Is Pioneer 10 Heading?</h2>
+
+                <p>
+                    Explore three perspectives on Pioneer 10's journey:
+                    its documented direction, its outward journey beyond
+                    the planets, and an illustrative deep-space scenario.
+                </p>
+
+                <p class="paths-note">
+                    NASA documents Pioneer 10's general direction toward
+                    Aldebaran in Taurus. The other displayed curves are
+                    illustrative visualizations, not separate NASA predictions.
+                </p>
+            </div>
+
+            <div class="path-options">
+                <button class="path-card" data-path="taurus" type="button" aria-pressed="false">
+                    <span class="path-number">01 / DOCUMENTED DIRECTION</span>
+                    <span class="path-icon">✦</span>
+                    <span class="path-card-title">Toward Taurus</span>
+                    <span class="path-card-description">
+                        NASA states that Pioneer 10 is heading generally toward
+                        Aldebaran, the red star in the Taurus constellation.
+                        Its journey to that region is expected to take about
+                        two million years.
+                    </span>
+                    <span class="path-select">EXPLORE DIRECTION →</span>
+                </button>
+
+                <button class="path-card" data-path="interstellar" type="button" aria-pressed="false">
+                    <span class="path-number">02 / OUTBOUND JOURNEY</span>
+                    <span class="path-icon">✧</span>
+                    <span class="path-card-title">Into Interstellar Space</span>
+                    <span class="path-card-description">
+                        Explore Pioneer 10's outward journey beyond the planets.
+                        The route shown after the last signal is an illustrative
+                        continuation, not a newly measured trajectory.
+                    </span>
+                    <span class="path-select">EXPLORE JOURNEY →</span>
+                </button>
+
+                <button class="path-card" data-path="deep-space" type="button" aria-pressed="false">
+                    <span class="path-number">03 / VISUAL SCENARIO</span>
+                    <span class="path-icon">◎</span>
+                    <span class="path-card-title">Deep-Space Explorer</span>
+                    <span class="path-card-description">
+                        Explore a conceptual visualization of the spacecraft
+                        traveling through distant space. This curve is created
+                        for the interactive experience and does not represent
+                        a NASA-predicted direction.
+                    </span>
+                    <span class="path-select">EXPLORE SCENARIO →</span>
+                </button>
+            </div>
+
+            <div class="selected-path-info" id="selectedPathInfo" hidden>
+                <p class="small-label">SELECTED VIEW</p>
+                <h3 id="selectedPathTitle">Selected Path</h3>
+                <p id="selectedPathDescription"></p>
+
+                <div class="selected-path-actions">
+                    <button id="replayPathButton" class="action-button" type="button">
+                        ↻ Replay Journey
+                    </button>
+
+                    <button id="clearPathButton" class="action-button secondary" type="button">
+                        Clear Selection
+                    </button>
+                </div>
+            </div>
+
+            <div class="path-sources">
+                <p>
+                    <strong>Scientific sources:</strong>
+                    <a href="https://science.nasa.gov/mission/pioneer-10/"
+                       target="_blank" rel="noopener noreferrer">
+                        NASA Science — Pioneer 10
+                    </a>
+                    <span> · </span>
+                    <a href="https://science.nasa.gov/missions/pioneer/pioneer-10-sends-last-signal/"
+                       target="_blank" rel="noopener noreferrer">
+                        NASA — Pioneer 10 Sends Last Signal
+                    </a>
+                </p>
+            </div>
+        </section>
+
+        <!-- DISCLAIMER -->
+        <section class="disclaimer">
+            <p class="small-label">ABOUT THIS VISUALIZATION</p>
+            <p>
+                Pioneer 10's last signal was received in 2003. Its current
+                position is not being tracked live by this page. The 3D scene
+                uses simplified positions, and paths beyond the last signal
+                are visual interpretations rather than exact predictions.
+            </p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <span>SPACE EXPLORER</span>
+        <span>ABANDONED BUT NOT FORGOTTEN</span>
+    </footer>
+</body>
+</html>
